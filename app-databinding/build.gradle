@@ -32,20 +32,22 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     implementation 'com.jakewharton:butterknife:10.2.3'
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
 
 //    annotationProcessor project(':x2c-apt')
 //    implementation project(':x2c-lib')
-//    if (android.dataBinding.enabled) {
-//        implementation project(':x2c-binding')
-//    }
-
+    if (android.dataBinding.enabled) {
+        //implementation project(':x2c-binding')
+        implementation 'com.zhangyue.we:x2c-binding:1.0.5'
+    }
 //    kapt project(':x2c-apt')
-    implementation project(':x2c-lib')
+//    implementation project(':x2c-lib')
+    kapt 'com.bbc876219.lib:x2c-apt:1.0.0'
+    implementation 'com.bbc876219.lib:lib_x2c:1.0.0'
 //    if (android.dataBinding.enabled) {
 //        implementation  'com.zhangyue.we:x2c-binding:1.0.5'
 //    }

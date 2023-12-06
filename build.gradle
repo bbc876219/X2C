@@ -3,6 +3,9 @@
 buildscript {
     ext.kotlin_version = "1.6.21"
     repositories {
+        maven {
+            url = uri("${rootProject.buildFile.parentFile.absolutePath}/repos")
+        }
         mavenCentral()
         google()
         maven {
@@ -20,6 +23,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url =uri("${rootProject.buildFile.parentFile.absolutePath}/repos")
+        }
         mavenCentral()
         google()
         maven {

@@ -26,6 +26,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compileOnly fileTree(include: ['*.jar'], dir: 'libs-provided')
+//    implementation project(':x2c-lib')
+//    implementation 'androidx.databinding:databinding-runtime:7.1.3@aar'
 }
 
 

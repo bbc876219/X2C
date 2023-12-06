@@ -1,9 +1,12 @@
 package com.zhangyue.demo.databinding;
 
 import android.app.Activity;
-import androidx.databinding.DataBindingX2C;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingX2C;
 
 import com.zhangyue.we.x2c.demo.databinding.ActivityDatabindingBinding;
 

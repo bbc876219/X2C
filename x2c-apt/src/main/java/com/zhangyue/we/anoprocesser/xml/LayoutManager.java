@@ -363,7 +363,12 @@ public class LayoutManager {
             Log.w("getRFile() called rFile3.exists()=" + rFile.exists());
             if (!rFile.exists()) {
                 Log.w("first R File not found, path3 = " + rFile.getAbsolutePath());
-
+                basePath1 = path
+                        .replace("generated/source/kapt", "intermediates/compile_symbol_list")
+                        .replace("test.java", "R.txt");
+                rFile = new File(basePath1);
+                Log.w("getRFile() called rFile4=" + rFile.getAbsolutePath());
+                Log.w("getRFile() called rFile4.exists()=" + rFile.exists());
             }
         } catch (IOException e) {
             e.printStackTrace();

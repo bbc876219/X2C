@@ -13,14 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package androidx.databinding;
+package android.databinding;
 
 import android.app.Activity;
 
-import androidx.databinding.DataBinderMapper;
-import androidx.databinding.DataBindingComponent;
-import androidx.databinding.ViewDataBinding;
+
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.zhangyue.we.x2c.X2C;
+
 
 /**
  * Utility class to create {@link ViewDataBinding} from layouts.
@@ -51,7 +49,7 @@ public class DataBindingX2C {
      *
      * @param bindingComponent The default binding component to use
      */
-    public static void setDefaultComponent( androidx.databinding.DataBindingComponent bindingComponent) {
+    public static void setDefaultComponent( DataBindingComponent bindingComponent) {
         sDefaultComponent = bindingComponent;
     }
 

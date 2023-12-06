@@ -13,7 +13,6 @@
             <option value="$PROJECT_DIR$/app-databinding" />
             <option value="$PROJECT_DIR$/app-module" />
             <option value="$PROJECT_DIR$/x2c-apt" />
-            <option value="$PROJECT_DIR$/x2c-binding" />
             <option value="$PROJECT_DIR$/x2c-lib" />
           </set>
         </option>

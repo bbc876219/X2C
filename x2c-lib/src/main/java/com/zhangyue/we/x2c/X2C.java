@@ -7,10 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * @author:chengwei 2018/8/9
- * @description
- */
+
 public final class X2C {
     private static final SparseArray<IViewCreator> sSparseArray = new SparseArray<>();
 
