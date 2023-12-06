@@ -214,6 +214,7 @@ public class LayoutManager {
             while (!file.getName().equals("build")) {
                 file = file.getParentFile();
             }
+            Log.w("getRootFile() called file=" + file.getParentFile().getAbsolutePath());
             return file.getParentFile();
         } catch (Exception e) {
             e.printStackTrace();
@@ -225,9 +226,14 @@ public class LayoutManager {
     private void findPackageName() {
         String sep = File.separator;
         File androidMainfest = new File(mRootFile + sep + "src" + sep + "main" + sep + "AndroidManifest.xml");
+        Log.w("findPackageName() called androidMainfest=" + androidMainfest.getAbsolutePath());
+        Log.w("findPackageName() called androidMainfest.exists=" + androidMainfest.exists());
         if (!androidMainfest.exists()) {
             androidMainfest = new File(mRootFile + sep + "build" + sep + "intermediates" + sep + "manifests"
                     + sep + "full" + sep + "debug" + sep + "AndroidManifest.xml");
+            Log.w("findPackageName() called androidMainfest1=" + androidMainfest.getAbsolutePath());
+            Log.w("findPackageName() called androidMainfest1.exists=" + androidMainfest.exists());
+
         }
         SAXParser parser = null;
         try {
@@ -238,6 +244,7 @@ public class LayoutManager {
                     super.startElement(uri, localName, qName, attributes);
                     if (qName.equals("manifest")) {
                         mPackageName = attributes.getValue("package");
+                        Log.w("findPackageName() called mPackageName=" + mPackageName);
                     }
                 }
             });
@@ -265,18 +272,30 @@ public class LayoutManager {
             String line;
             boolean layoutStarted = false;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("public static final class layout")) {
-                    layoutStarted = true;
-                } else if (layoutStarted) {
-                    if (line.contains("}")) {
-                        break;
-                    } else {
-                        line = line.substring(line.indexOf("int") + 3, line.indexOf(";"))
-                                .replaceAll(" ", "").trim();
-                        String[] lineSplit = line.split("=");
+                if (rFile.getName().endsWith(".txt")){
+                    if (line.contains("int layout")){
+                        line = line.substring(line.indexOf("layout") + 7).trim();
+                        String[] lineSplit = line.split(" ");
                         int id = Integer.decode(lineSplit[1]);
+                        Log.w( "getR() called  layout="+lineSplit[0]+"  ,id="+lineSplit[1]);
                         map.put(lineSplit[0], id);
                         mRJavaId.put(id, lineSplit[0]);
+                    }
+
+                }else {
+                    if (line.contains("public static final class layout")) {
+                        layoutStarted = true;
+                    } else if (layoutStarted) {
+                        if (line.contains("}")) {
+                            break;
+                        } else {
+                            line = line.substring(line.indexOf("int") + 3, line.indexOf(";"))
+                                    .replaceAll(" ", "").trim();
+                            String[] lineSplit = line.split("=");
+                            int id = Integer.decode(lineSplit[1]);
+                            map.put(lineSplit[0], id);
+                            mRJavaId.put(id, lineSplit[0]);
+                        }
                     }
                 }
             }
@@ -292,30 +311,65 @@ public class LayoutManager {
         String sep = File.separator;
         File rFile = null;
         try {
+            String rJavaPath = mPackageName.replace(".", sep) + sep + "R.java";
+            Log.w("getRFile() called rJavaPath=" + rJavaPath);
             JavaFileObject filerSourceFile = mFiler.createSourceFile("test");
             String path = filerSourceFile.toUri().getPath();
-            String basePath = path.replace("apt", "r").replace("test.java", "");
-            rFile = new File(basePath, mPackageName.replace(".", sep) + sep + "R.java");
+            Log.w("getRFile() called path=" + path);
+
+
+            File x2jDir = new File(path.substring(0, path.indexOf("/build/")) + "/build/generated/source/x2j/main/");
+            Log.w("getRFile() called x2jDir=" + x2jDir);
+
+
+            rFile = new File(x2jDir, rJavaPath.replace("R.java", "X2J_R.java"));
+            Log.w("getRFile() called rFile=" + rFile.getAbsolutePath());
+            Log.w("getRFile() called rFile.exists()=" + rFile.exists());
+            if (rFile.exists()) {
+                return rFile;
+            }
+
+
+
+            String basePath = path.replace("/apt/", "/r/")
+                    .replace("/kapt/", "/r/")
+                    .replace("test.java", "");
+            rFile = new File(basePath, rJavaPath);
+            Log.w("getRFile() called rFile1=" + rFile.getAbsolutePath());
+            Log.w("getRFile() called rFile1.exists()=" + rFile.exists());
             if (!rFile.exists()) {
-                basePath = path.substring(0, path.indexOf("apt"));
-                String javaFilePath = path.substring(path.indexOf("apt") + "apt".length());
-                File temp = new File(new File(new File(basePath).getParentFile(), "not_namespaced_r_class_sources"), javaFilePath).getParentFile();
-                File[] files = temp.listFiles();
-                if (files != null) {
-                    for (File dir : files) {
-                        File file = new File(dir, "r" + sep + mPackageName.replace(".", sep) + sep + "R.java");
-                        if (file.exists()) {
-                            rFile = file;
-                            break;
-                        }
-                    }
-                }
+                Log.w("first R File not found, path1 = " + rFile.getAbsolutePath());
+                basePath = basePath
+                        .replace(sep, "/")
+                        .replace("/generated/ap_generated_sources/", "/generated/not_namespaced_r_class_sources/")
+                        .replace("/generated/source/", "/generated/not_namespaced_r_class_sources/")
+//                        .replace("/debug/", "Debug/")
+//                        .replace("/release/", "Release/")
+                        .replace("/out/", "/r/");
+
+                rFile = new File(basePath, rJavaPath);
+                Log.w("getRFile() called rFile2=" + rFile.getAbsolutePath());
+                Log.w("getRFile() called rFile2.exists()=" + rFile.exists());
+
+            }
+            ///Users/lidongjun/project/X2C/app/build/generated/source/kapt/debug/test.java
+            ///Users/lidongjun/project/X2C/app/build/intermediates/runtime_symbol_list/debug/R.txt
+            String basePath1 = path
+                    .replace("generated/source/kapt", "intermediates/runtime_symbol_list")
+                    .replace("generated/source/kapt", "intermediates/compile_symbol_list")
+                    .replace("test.java", "R.txt");
+            rFile = new File(basePath1);
+            Log.w("getRFile() called rFile3=" + rFile.getAbsolutePath());
+            Log.w("getRFile() called rFile3.exists()=" + rFile.exists());
+            if (!rFile.exists()) {
+                Log.w("first R File not found, path3 = " + rFile.getAbsolutePath());
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         if (rFile == null || !rFile.exists()) {
-            Log.e("X2C not find R.java!!!");
+            Log.e("X2C not find R.java!!!, path = " + rFile);
         }
         return rFile;
     }

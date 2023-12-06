@@ -37,11 +37,14 @@ public class XmlProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Xml.class);
+        System.out.println( "process() called with: elements = [" + elements.size() + "], roundEnvironment = [" + roundEnvironment + "]");
         TreeSet<String> layouts = new TreeSet<>();
         for (Element element : elements) {
             Xml xml = element.getAnnotation(Xml.class);
             String[] names = xml.layouts();
             for (String name : names) {
+                System.out.println( "process() called with: layouts.add = [" + name + "], real  = [" + (name.substring(name.lastIndexOf(".") + 1)) + "]");
+
                 layouts.add(name.substring(name.lastIndexOf(".") + 1));
             }
         }
@@ -50,6 +53,7 @@ public class XmlProcessor extends AbstractProcessor {
             if (mGroupId == 0 && mLayoutMgr.getLayoutId(name) != null) {
                 mGroupId = (mLayoutMgr.getLayoutId(name) >> 24);
             }
+            System.out.println( "process().translate called with: mGroupId = [" + mGroupId + "], name = [" + name + "]");
             mLayoutMgr.setGroupId(mGroupId);
             mLayoutMgr.translate(name);
         }

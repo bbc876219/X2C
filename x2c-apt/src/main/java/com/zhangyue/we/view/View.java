@@ -591,7 +591,6 @@ public class View implements ITranslator {
 //            stringBuilder.append("try {\n");
 //            stringBuilder.append(String.format("    %s.setImageDrawable(new ColorDrawable(res.getColor(%s)));\n", objName, getUnknown(value)));
 //            stringBuilder.append("} catch (Exception e) {\n");
-//            stringBuilder.append("    //这里再来异常就是不支持的资源类型\n");
 //            stringBuilder.append(String.format("    %s.setImageResource(%s);\n", objName, getUnknown(value)));
 //            stringBuilder.append("}\n");
 

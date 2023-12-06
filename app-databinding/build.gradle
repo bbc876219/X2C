@@ -1,17 +1,18 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    //    id 'kotlin-android-extensions'
+}
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.zhangyue.we.x2c.demo2"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions.includeCompileClasspath = true
-        }
     }
     buildTypes {
         release {
@@ -22,6 +23,10 @@ android {
     dataBinding {
         enabled true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
 
@@ -29,8 +34,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
 
 //    annotationProcessor project(':x2c-apt')
 //    implementation project(':x2c-lib')
@@ -38,9 +44,9 @@ dependencies {
 //        implementation project(':x2c-binding')
 //    }
 
-    annotationProcessor 'com.zhangyue.we:x2c-apt:1.0.8'
-    implementation 'com.zhangyue.we:x2c-lib:1.0.6'
-    if (android.dataBinding.enabled) {
-        implementation  'com.zhangyue.we:x2c-binding:1.0.5'
-    }
+//    kapt project(':x2c-apt')
+    implementation project(':x2c-lib')
+//    if (android.dataBinding.enabled) {
+//        implementation  'com.zhangyue.we:x2c-binding:1.0.5'
+//    }
 }

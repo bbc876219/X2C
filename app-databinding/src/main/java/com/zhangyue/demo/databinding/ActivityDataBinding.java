@@ -1,7 +1,7 @@
 package com.zhangyue.demo.databinding;
 
 import android.app.Activity;
-import android.databinding.DataBindingX2C;
+import androidx.databinding.DataBindingX2C;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 

@@ -1,18 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions.includeCompileClasspath = true
-        }
     }
 
     buildTypes {
@@ -29,7 +25,7 @@ dependencies {
 }
 
 
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 //项目主页
@@ -79,36 +75,36 @@ artifacts {
 }
 
 // 配置maven库，生成POM.xml文件
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                name 'xml 2 code libraray'
-                url siteUrl
-                licenses {
-                    license {
-                        name 'xml 2 code libraray'
-                        url 'https://github.com/chengweidev'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'chengweidev'
-                        name 'chengweidev'
-                        email 'chengweidev@gmail.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
+//install {
+//    repositories.mavenInstaller {
+//        // This generates POM.xml with proper parameters
+//        pom {
+//            project {
+//                packaging 'aar'
+//                name 'xml 2 code libraray'
+//                url siteUrl
+//                licenses {
+//                    license {
+//                        name 'xml 2 code libraray'
+//                        url 'https://github.com/chengweidev'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id 'chengweidev'
+//                        name 'chengweidev'
+//                        email 'chengweidev@gmail.com'
+//                    }
+//                }
+//                scm {
+//                    connection gitUrl
+//                    developerConnection gitUrl
+//                    url siteUrl
+//                }
+//            }
+//        }
+//    }
+//}
 
 //上传到jcenter
 Properties properties = new Properties()

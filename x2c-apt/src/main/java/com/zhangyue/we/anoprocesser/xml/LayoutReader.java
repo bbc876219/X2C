@@ -27,6 +27,7 @@ public class LayoutReader {
     private File mFile;
 
     public LayoutReader(File file, String name, Filer filer, String packageName, int groupId) {
+        System.out.println( "new LayoutReader() called with: file = [" + file + "], name = [" + name + "], filer = [" + filer + "], packageName = [" + packageName + "], groupId = [" + groupId + "]");
         mFile = file;
         mFiler = filer;
         mPackageName = packageName;

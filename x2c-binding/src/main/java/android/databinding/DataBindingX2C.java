@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package android.databinding;
+package androidx.databinding;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.IntentFilter;
-import android.databinding.DataBinderMapper;
-import android.databinding.DataBindingComponent;
-import android.databinding.ViewDataBinding;
+
+import androidx.databinding.DataBinderMapper;
+import androidx.databinding.DataBindingComponent;
+import androidx.databinding.ViewDataBinding;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +51,7 @@ public class DataBindingX2C {
      *
      * @param bindingComponent The default binding component to use
      */
-    public static void setDefaultComponent( android.databinding.DataBindingComponent bindingComponent) {
+    public static void setDefaultComponent( androidx.databinding.DataBindingComponent bindingComponent) {
         sDefaultComponent = bindingComponent;
     }
 
