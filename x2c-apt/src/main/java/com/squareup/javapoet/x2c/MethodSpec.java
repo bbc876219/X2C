@@ -203,7 +203,7 @@ public final class MethodSpec {
     }
 
     String methodName = method.getSimpleName().toString();
-    MethodSpec.Builder methodBuilder = MethodSpec.methodBuilder(methodName);
+    Builder methodBuilder = MethodSpec.methodBuilder(methodName);
 
     methodBuilder.addAnnotation(Override.class);
 

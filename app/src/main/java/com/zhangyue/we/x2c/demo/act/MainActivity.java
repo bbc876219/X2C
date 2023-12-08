@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.zhangyue.we.x2c.X2C;
-import com.zhangyue.we.x2c.ano.Xml;
+import com.bbc876219.lib.xml2code.Xml2CodeHelper;
+import com.bbc876219.lib.xml2code.annotation.Xml2Code;
+
 import com.zhangyue.we.x2c.demo.R;
 import com.zhangyue.x2c.demo.ActivitySubModule;
 
@@ -13,13 +14,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-@Xml(layouts = "activity")
+@Xml2Code(layouts = "activity")
 public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        X2C.setContentView(this, R.layout.activity);
+        Xml2CodeHelper.setContentView(this, R.layout.activity);
         ButterKnife.bind(this);
     }
 

@@ -37,8 +37,8 @@ dependencies {
 
     implementation project(':app-module')
 
-//    kapt project(':x2c-apt')
-//    implementation project(':x2c-lib')
-     kapt 'com.bbc876219.lib:x2c-apt:1.0.0'
-     implementation 'com.bbc876219.lib:lib_x2c:1.0.0'
+    kapt project(':x2c-apt')
+    implementation project(':x2c-lib')
+//     kapt 'com.bbc876219.lib:x2c-apt:1.0.1'
+//     implementation 'com.bbc876219.lib:lib_x2c:1.0.1'
 }

@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 
 
-import com.zhangyue.we.x2c.X2C;
-import com.zhangyue.we.x2c.ano.Xml;
+import com.bbc876219.lib.xml2code.Xml2CodeHelper;
+import com.bbc876219.lib.xml2code.annotation.Xml2Code;
+
 
 import butterknife.OnClick;
 import plugin.zhangyue.com.sub_module.R;
@@ -14,12 +15,12 @@ import plugin.zhangyue.com.sub_module.R;
  * @author：chengwei 2018/9/5
  * @description
  */
-@Xml(layouts = "sub_activity")
+@Xml2Code(layouts = "sub_activity")
 public class ActivitySubModule extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        X2C.setContentView(this, R.layout.sub_activity);
+        Xml2CodeHelper.setContentView(this, R.layout.sub_activity);
     }
 
 }

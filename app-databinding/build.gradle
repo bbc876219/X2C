@@ -46,7 +46,7 @@ dependencies {
     }
 //    kapt project(':x2c-apt')
 //    implementation project(':x2c-lib')
-    kapt 'com.bbc876219.lib:x2c-apt:1.0.0'
+    //kapt 'com.bbc876219.lib:x2c-apt:1.0.0'
     implementation 'com.bbc876219.lib:lib_x2c:1.0.0'
 //    if (android.dataBinding.enabled) {
 //        implementation  'com.zhangyue.we:x2c-binding:1.0.5'

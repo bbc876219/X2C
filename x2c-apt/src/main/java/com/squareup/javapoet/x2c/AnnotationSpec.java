@@ -142,7 +142,7 @@ public final class AnnotationSpec {
 
   public static AnnotationSpec get(AnnotationMirror annotation) {
     TypeElement element = (TypeElement) annotation.getAnnotationType().asElement();
-    AnnotationSpec.Builder builder = AnnotationSpec.builder(ClassName.get(element));
+    Builder builder = AnnotationSpec.builder(ClassName.get(element));
     Visitor visitor = new Visitor(builder);
     for (ExecutableElement executableElement : annotation.getElementValues().keySet()) {
       String name = executableElement.getSimpleName().toString();

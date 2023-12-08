@@ -6,7 +6,20 @@
     <!-- “int” 表示入参的类型-->
     <!--具体解析过程参考CustomAttr-->
     <attr name="app:mixColor" toFunc="view.setMixColor(int)" />
+    <!-- com.flyco.tablayout.CommonTabLayout-->
+    <attr name="app:tl_iconVisible" toFunc="view.setIconVisible(boolean)" />
+    <!-- com.flyco.tablayout.SlidingTabLayout-->
 
+    <attr name="app:tl_indicator_color" toFunc="view.setIndicatorColor(color)" />
+    <attr name="app:tl_indicator_corner_radius" toFunc="view.setIndicatorCornerRadius(dimension)" />
+    <attr name="app:tl_indicator_height" toFunc="view.setIndicatorHeight(dimension)" />
+    <attr name="app:tl_indicator_width" toFunc="view.setIndicatorWidth(dimension)" />
+    <attr name="app:tl_tab_padding" toFunc="view.setTabPadding(dimension)" />
+    <attr name="app:tl_tab_space_equal" toFunc="view.setTabSpaceEqual(boolean)" />
+    <attr name="app:tl_textSelectColor" toFunc="view.setTextSelectColor(color)" />
+    <attr name="app:tl_textUnselectColor" toFunc="view.setTextUnselectColor(color)" />
+    <attr name="app:tl_textsize" toFunc="view.setTextsize(dimension)" />
+    <!--com.flyco.tablayout.SlidingTabLayout-->
     <!--针对layoutParams自定义属性写法-->
     <!--“params”代表调用对象是layoutParams-->
     <!--“topMargin” 修改的成员变量 -->

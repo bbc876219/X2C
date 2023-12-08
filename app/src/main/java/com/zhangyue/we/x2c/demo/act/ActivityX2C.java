@@ -5,20 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
 
-import com.zhangyue.we.x2c.X2C;
-import com.zhangyue.we.x2c.ano.Xml;
+import com.bbc876219.lib.xml2code.Xml2CodeHelper;
+import com.bbc876219.lib.xml2code.annotation.Xml2Code;
+
 import com.zhangyue.we.x2c.demo.R;
 
 /**
  * @author:chengwei 2018/8/24
  * @description
  */
-@Xml(layouts = "activity_main_inter")
+@Xml2Code(layouts = "activity_main_inter")
 public class ActivityX2C extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        X2C.setContentView(this, R.layout.activity_main_inter);
+        Xml2CodeHelper.setContentView(this, R.layout.activity_main_inter);
 
         findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
             @Override
